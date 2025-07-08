@@ -1,50 +1,242 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-<title>RolasN Maintenance</title>
-<style type="text/css">
-      body { text-align: center; padding: 150px; }
-      .footer{font-size: 15px; color: #939393;}
-      h1 { font-size: 40px; }
-      body { font: 20px Helvetica, sans-serif; color: #333; }
-      #article { display: block; text-align: left; width: 650px; margin: 0 auto; }
-      a { color: #dc8100; text-decoration: none; }
-      a:hover { color: #333; text-decoration: none; }
-      .text{font-size: 23px; color: #3A3A3A;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Situs dalam Pemeliharaan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <style>
+        /* Pengaturan Dasar Body */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'DotGothic16', sans-serif;
+            background-color: #000000;
+            /* Latar belakang Screentone (pola titik) */
+            background-image: radial-gradient(#333 1px, transparent 0);
+            background-size: 15px 15px;
+            color: #000000; /* Warna teks default hitam */
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Kontainer utama sebagai panel manga */
+        .manga-panel {
+            width: 90%;
+            max-width: 480px;
+            background-color: #FFFFFF; /* Panel putih */
+            border: 4px solid #000000; /* Border hitam tebal */
+            padding: 1.5rem;
+            box-shadow: 8px 8px 0px #FFFFFF; /* Efek bayangan tegas */
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        /* Kotak untuk teks, seperti kotak narasi */
+        .text-box {
+            border: 2px solid #000000;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Judul utama */
+        h1 {
+            font-size: 2rem;
+            font-weight: normal;
+            margin: 0 0 0.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* Paragraf pesan pemeliharaan */
+        p {
+            font-size: 1rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Gambar/GIF Anime */
+        .anime-gif {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #000000;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Tombol Aksi Gemini */
+        .gemini-button {
+            font-family: 'DotGothic16', sans-serif;
+            font-size: 1rem;
+            background-color: #000000;
+            color: #FFFFFF;
+            border: 2px solid #000000;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 1.5rem;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .gemini-button:hover {
+            background-color: #FFFFFF;
+            color: #000000;
+        }
+
+        .gemini-button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+
+        /* Kontainer untuk hasil dari Gemini */
+        #character-output {
+            border: 2px dashed #000000;
+            padding: 1rem;
+            min-height: 50px;
+            text-align: left;
+            line-height: 1.6;
+            white-space: pre-wrap; /* Agar format teks terjaga */
+        }
+        
+        #character-output h3 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        #character-output p {
+            white-space: normal;
+        }
+        
+        /* Styling untuk gambar karakter yang dihasilkan */
+        .character-image {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #000000;
+            margin-bottom: 1rem;
+            background-color: #eee; /* Warna placeholder saat memuat */
+            display: block;
+        }
+
+        /* Teks footer */
+        footer {
+            font-size: 0.8rem;
+            color: #000000;
+            margin-top: 1.5rem;
+        }
     </style>
-    <style type="text/css">
-            .love {
-              display: inline-block;
-              position: relative;
-              top: .1.0em;
-              font-size: 0.9em;
-              color: #e74c3c;
-              -webkit-transform: scale(.9);
-              -moz-transform: scale(.9);
-              transform: scale(.9);
-              -webkit-animation: love .5s infinite linear alternate-reverse;
-              -moz-animation: love .5s infinite linear alternate-reverse;
-              animation: love .5s infinite linear alternate-reverse;
-            }
-            @-webkit-keyframes love {
-              to {-webkit-transform: scale(1.4);}
-            }
-            @-moz-keyframes love {
-              to {-moz-transform: scale(1.4);}
-            }
-            @keyframes love {
-              to {transform: scale(1.2);}
-            }
-            </style>
 </head>
 <body>
-<div id="article">
-<h1>👋 hello. </h1>
-<div>
-<p class="text">Website masih dalam perbaikan, saya akan segera kembali.</p>
-</div>
-   <img src="https://media.giphy.com/media/ErZ8hv5eO92JW/giphy.gif" alt="funny GIF" width="60%">
-<p class="footer">— Made in <span class="love"> 💛 </span> by : RolasN</p>
-</div>
+
+    <div class="manga-panel">
+        <div class="text-box">
+             <h1>👋 hello.</h1>
+             <p>Website masih dalam perbaikan, saya akan segera kembali.</p>
+        </div>
+        
+        <img src="https://media.tenor.com/J14m2d3DNEoAAAAC/lucky-star-konata.gif" alt="Anime GIF" class="anime-gif">
+        
+        <button id="generate-char-btn" class="gemini-button">✨ Buat Karakter Acak</button>
+
+        <div id="character-output">
+            <p style="text-align: center; white-space: normal;">Klik tombol di atas untuk membuat profil karakter anime acak sambil menunggu!</p>
+        </div>
+        
+        <footer>
+            — Made in 💛 by you
+        </footer>
+    </div>
+
+    <script>
+        const generateBtn = document.getElementById('generate-char-btn');
+        const outputDiv = document.getElementById('character-output');
+
+        generateBtn.addEventListener('click', generateCharacter);
+
+        async function generateCharacter() {
+            generateBtn.disabled = true;
+            outputDiv.innerHTML = '<p style="text-align: center; white-space: normal;">Sedang membuat karakter dan gambar...</p>';
+
+            const textPrompt = "Buatkan saya satu profil karakter anime orisinal yang unik. Berikan dalam format JSON dengan kunci: 'nama', 'kepribadian' (jelaskan dalam 2-3 kata), dan 'bio_singkat' (jelaskan dalam 1-2 kalimat).";
+            
+            try {
+                // --- Langkah 1: Hasilkan Profil Karakter (Teks) ---
+                const textPayload = {
+                    contents: [{ role: "user", parts: [{ text: textPrompt }] }],
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "OBJECT",
+                            properties: {
+                                "nama": { "type": "STRING" },
+                                "kepribadian": { "type": "STRING" },
+                                "bio_singkat": { "type": "STRING" }
+                            },
+                            required: ["nama", "kepribadian", "bio_singkat"]
+                        }
+                    }
+                };
+                
+                const apiKey = ""; // Kunci API akan disediakan oleh lingkungan Canvas
+                const textApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const textResponse = await fetch(textApiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(textPayload)
+                });
+
+                if (!textResponse.ok) throw new Error(`Gagal membuat profil teks (status: ${textResponse.status})`);
+                const textResult = await textResponse.json();
+                if (!textResult.candidates || textResult.candidates.length === 0) throw new Error("Tidak ada konten teks yang dihasilkan.");
+                
+                const characterDataText = textResult.candidates[0].content.parts[0].text;
+                const characterData = JSON.parse(characterDataText);
+
+                // --- Langkah 2: Hasilkan Gambar Karakter ---
+                const imagePrompt = `Potret karakter anime gaya manga, hitam putih. Nama: ${characterData.nama}. Kepribadian: ${characterData.kepribadian}. Latar belakang screentone sederhana.`;
+
+                const imagePayload = {
+                    instances: [{ prompt: imagePrompt }],
+                    parameters: { "sampleCount": 1 }
+                };
+
+                const imageApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
+                
+                const imageResponse = await fetch(imageApiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(imagePayload)
+                });
+
+                if (!imageResponse.ok) throw new Error(`Gagal membuat gambar (status: ${imageResponse.status})`);
+                const imageResult = await imageResponse.json();
+                if (!imageResult.predictions || imageResult.predictions.length === 0) throw new Error("Tidak ada gambar yang dihasilkan.");
+
+                const imageUrl = `data:image/png;base64,${imageResult.predictions[0].bytesBase64Encoded}`;
+
+                // --- Langkah 3: Tampilkan Hasilnya ---
+                outputDiv.innerHTML = `
+                    <img src="${imageUrl}" alt="Gambar ${characterData.nama}" class="character-image">
+                    <h3>${characterData.nama}</h3>
+                    <p><strong>Kepribadian:</strong> ${characterData.kepribadian}</p>
+                    <p><strong>Bio:</strong> ${characterData.bio_singkat}</p>
+                `;
+
+            } catch (error) {
+                console.error('Error:', error);
+                outputDiv.innerHTML = `<p style="text-align: center; white-space: normal;">Maaf, terjadi kesalahan saat membuat karakter. Coba lagi nanti. (${error.message})</p>`;
+            } finally {
+                generateBtn.disabled = false;
+            }
+        }
+    </script>
+
+</body>
 </html>
