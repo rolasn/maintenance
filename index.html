@@ -149,7 +149,7 @@
         </div>
         
         <footer>
-            — Made in 💛 by : RolasN
+            — Made in 💛 by you
         </footer>
     </div>
 
@@ -183,7 +183,7 @@
                     }
                 };
                 
-                const apiKey = "AIzaSyDuXhYoBO589xgYvJcVMpfGsBEM9LtBqG8"; // Kunci API akan disediakan oleh lingkungan Canvas
+                const apiKey = "AIzaSyDuXhYoBO589xgYvJcVMpfGsBEM9LtBqG8"; // GANTI DENGAN API KEY ANDA JIKA DIJALANKAN DI LUAR CANVAS
                 const textApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 const textResponse = await fetch(textApiUrl, {
@@ -192,7 +192,10 @@
                     body: JSON.stringify(textPayload)
                 });
 
-                if (!textResponse.ok) throw new Error(`Gagal membuat profil teks (status: ${textResponse.status})`);
+                if (!textResponse.ok) {
+                    const errorBody = await textResponse.text();
+                    throw new Error(`Gagal membuat profil teks (status: ${textResponse.status}). Detail: ${errorBody}`);
+                }
                 const textResult = await textResponse.json();
                 if (!textResult.candidates || textResult.candidates.length === 0) throw new Error("Tidak ada konten teks yang dihasilkan.");
                 
@@ -200,7 +203,8 @@
                 const characterData = JSON.parse(characterDataText);
 
                 // --- Langkah 2: Hasilkan Gambar Karakter ---
-                const imagePrompt = `Potret karakter anime gaya manga, hitam putih. Nama: ${characterData.nama}. Kepribadian: ${characterData.kepribadian}. Latar belakang screentone sederhana.`;
+                // **PERBAIKAN:** Prompt diubah ke Bahasa Inggris untuk kompatibilitas model yang lebih baik.
+                const imagePrompt = `Manga style character portrait, black and white line art. Character name: ${characterData.nama}. Personality: ${characterData.kepribadian}. Simple screentone background.`;
 
                 const imagePayload = {
                     instances: [{ prompt: imagePrompt }],
@@ -215,7 +219,10 @@
                     body: JSON.stringify(imagePayload)
                 });
 
-                if (!imageResponse.ok) throw new Error(`Gagal membuat gambar (status: ${imageResponse.status})`);
+                if (!imageResponse.ok) {
+                    const errorBody = await imageResponse.text();
+                    throw new Error(`Gagal membuat gambar (status: ${imageResponse.status}). Detail: ${errorBody}`);
+                }
                 const imageResult = await imageResponse.json();
                 if (!imageResult.predictions || imageResult.predictions.length === 0) throw new Error("Tidak ada gambar yang dihasilkan.");
 
